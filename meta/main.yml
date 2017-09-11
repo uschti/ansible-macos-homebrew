@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Kevin Wennemuth
+  description: Manages packages and casks vie macOS homebrew.
+  license: MIT
+  min_ansible_version: 2.3
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+  galaxy_tags:
+    - osx
+    - homebrew
+    - packages
+    - cask
+dependencies: []

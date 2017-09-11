@@ -1,0 +1,23 @@
+---
+macos_homebrew:
+  install:
+    # Path to install homebrew
+    path: /usr/local
+
+    # Path to link homebrew's brew command
+    bin: /usr/local/bin
+
+    # Path to install homebrew casks
+    cask: /Applications
+
+  # Homebrew taps to attach to
+  taps:
+    - { name: "homebrew/dupes" }
+    - { name: "caskroom/cask" }
+    - { name: "caskroom/versions" }
+
+  # Packages to install or uninstall.
+  packages: []
+
+  # Casks to install or uninstall.
+  casks: []

@@ -1,0 +1,10 @@
+---
+- name: Setup all configured taps.
+  homebrew_tap:
+    tap: "{{ item.name }}"
+    state: "{{ item.state | default(true) }}"
+  with_items: "{{ macos_homebrew.taps }}"
+
+- name: Update homebrew
+  homebrew:
+    update_homebrew: yes

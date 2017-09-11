@@ -1,0 +1,8 @@
+---
+- name: Cleanup homebrew packages
+  command: brew cleanup
+  ignore_errors: true
+
+- name: Cleanup cask packages
+  command: brew cask cleanup
+  ignore_errors: true
