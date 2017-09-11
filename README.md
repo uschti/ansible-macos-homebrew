@@ -16,7 +16,7 @@ hash_behaviour = merge
 
 ## Install
 Just add the role to your ``requirements.yml`` file:
-```
+```yaml
 - src: https://github.com/feffi/ansible-macos-homebrew.git
   name: feffi.macos-homebrew
 ```
@@ -55,6 +55,7 @@ None.
 
 ## Example Playbook
 
+```yaml
 ---
 - hosts: all
   vars:
@@ -65,3 +66,4 @@ None.
         - "google-chrome"
   roles:
     - { role: feffi.macos-homebrew }
+``
