@@ -2,7 +2,7 @@
 - name: Ensure configured homebrew packages are installed.
   homebrew:
     name: "{{ item.name }}"
-    state: "{{ item.state | default(latest) }}"
+    state: "{{ item.state | default('latest') }}"
     update_homebrew: yes
     install_options: "{{ item.options | default([]) }}"
   with_items: "{{ macos_homebrew.packages | default([]) }}"

@@ -1,8 +1,8 @@
 ---
-- name: Ensure configured homebrew packages are installed.
+- name: Ensure configured homebrew casks are installed.
   homebrew_cask:
     name: "{{ item.name }}"
-    state: "{{ item.state | default(present) }}"
+    state: "{{ item.state | default('present') }}"
     update_homebrew: yes
     install_options: "{{ item.options | default([]) }}"
   environment:

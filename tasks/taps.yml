@@ -2,7 +2,7 @@
 - name: Setup all configured taps.
   homebrew_tap:
     tap: "{{ item.name }}"
-    state: "{{ item.state | default(true) }}"
+    state: "{{ item.state | default('present') }}"
   with_items: "{{ macos_homebrew.taps }}"
 
 - name: Update homebrew
