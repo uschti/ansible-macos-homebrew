@@ -7,4 +7,4 @@
     install_options: "{{ item.options | default([]) }}"
   environment:
     HOMEBREW_CASK_OPTS: "--appdir={{ macos_homebrew.install.cask }}"
-  with_items: "{{ macos_homebrew.packages | default([]) }}"
+  with_items: "{{ macos_homebrew.casks | default([]) }}"
