@@ -3,10 +3,13 @@
   connection: local
   vars:
     DEBUG: true
-    macos_homebrew:
-      packages:
-        - { name: "node" }
-      casks:
-        - { name: "google-chrome" }
+    macos_homebrew: {
+      packages: [
+        { name: "node" }
+      ]
+      casks: [
+        { name: "google-chrome" }
+      ]
+    }
   roles:
     - ansible-macos-homebrew
