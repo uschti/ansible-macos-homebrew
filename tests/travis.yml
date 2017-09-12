@@ -6,7 +6,7 @@
     macos_homebrew: {
       packages: [
         { name: "node" }
-      ]
+      ],
       casks: [
         { name: "google-chrome" }
       ]
