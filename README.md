@@ -1,8 +1,8 @@
-# ansible-osx-homebrew
+# ansible-macos-homebrew
 
 Manages macOS app installation with [homebrew](https://brew.sh)
 
-[![Build Status](https://travis-ci.org/feffi/ansible-macos-homebrew.svg?branch=master)](https://travis-ci.org/feffi/ansible-homebrew)
+[![Build Status](https://img.shields.io/travis/feffi/ansible-macos-homebrew.svg)](https://github.com/feffi/ansible-macos-homebrew) [![Github All Releases](https://img.shields.io/github/downloads/feffi/ansible-macos-homebrew/total.svg)](https://github.com/feffi/ansible-macos-homebrew) [![GitHub forks](https://img.shields.io/github/forks/feffi/ansible-macos-homebrew.svg?style=social&label=Fork)](https://github.com/feffi/ansible-macos-homebrew) [![GitHub stars](https://img.shields.io/github/stars/feffi/ansible-macos-homebrew.svg?style=social&label=Star)](https://github.com/feffi/ansible-macos-homebrew) [![GitHub watchers](https://img.shields.io/github/watchers/feffi/ansible-macos-homebrew.svg?style=social&label=Watch)](https://github.com/feffi/ansible-macos-homebrew) [![Twitter Follow](https://img.shields.io/twitter/follow/feffi1.svg?style=social&label=Follow)](https://twitter.com/feffi1)
 
 ## Requirements
 
