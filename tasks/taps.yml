@@ -4,7 +4,3 @@
     tap: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ macos_homebrew.taps }}"
-
-- name: Update homebrew
-  homebrew:
-    update_homebrew: yes

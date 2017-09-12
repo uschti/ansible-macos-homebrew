@@ -37,7 +37,3 @@
     state: link
   when: homebrew_binary.stat.exists == false
   become: true
-
-- name: Update homebrew
-  homebrew:
-    update_homebrew: yes
