@@ -12,4 +12,4 @@
       ]
     }
   roles:
-    - ansible-macos-homebrew
+    - { role: ansible-macos-homebrew }
