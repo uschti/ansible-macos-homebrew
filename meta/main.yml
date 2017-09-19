@@ -10,7 +10,11 @@ galaxy_info:
         - all
   galaxy_tags:
     - osx
+    - macos
+    - system
     - homebrew
     - packages
     - cask
+    - applications
+    - appstore
 dependencies: []
