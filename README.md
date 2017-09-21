@@ -29,7 +29,8 @@ Available variables are listed below, along with default values:
 macos_homebrew:
   install:
     # Path to install homebrew
-    path: /usr/local
+    prefix: "/usr/local"
+    path: "Homebrew"
 
     # Path to link homebrew's brew command
     bin: /usr/local/bin
