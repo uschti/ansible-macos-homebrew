@@ -1,33 +1,59 @@
 ---
-- name: Setup homebrew install path.
-  become: true
+- name: Ensure Homebrew parent directory has correct permissions (on High Sierra).
   file:
     path: "{{ macos_homebrew.install.path }}"
-    group: admin
-    mode: 0775
+    owner: root
     state: directory
+  become: yes
+  when: "ansible_distribution_version.startswith('10.13')"
+
+- name: Ensure Homebrew parent directory has correct permissions (on non-'High Sierra' versions of Mac OS X).
+  file:
+    path: "{{ macos_homebrew.install.path }}"
+    owner: root
+    group: admin
+    state: directory
+    mode: 0775
+  become: yes
+  when: "not ansible_distribution_version.startswith('10.13')"
 
 - name: Check if homebrew binary is already in place.
-  stat: "path={{ macos_homebrew.install.bin }}/brew"
+  stat:
+    path: "{{ macos_homebrew.install.bin }}/brew"
   register: homebrew_binary
 
-- name: Ensure homebrew is installed.
-  become: true
-  shell: creates={{ macos_homebrew.install.bin }}/brew curl -fsSL https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C {{ macos.homebrew.install.path }}
-  when: homebrew_binary.stat.exists == false
+- name: "Clone Homebrew git repository from {{ macos_homebrew.install.git }}"
+  git:
+    repo: "{{ macos_homebrew.install.git }}"
+    version: master
+    dest: "{{ macos_homebrew.install.path }}"
+    update: no
+    accept_hostkey: yes
+    depth: 1
 
-- name: Ensure permissions on macos_homebrew.install.path dirs.
+- name: "Ensure permissions on {{ macos_homebrew.install.path }} dirs."
   become: true
   file:
     path: "{{ macos_homebrew.install.path }}"
+    owner: "{{ ansible_user_id }}"
     group: admin
     mode: 0775
     state: directory
     recurse: true
   when: homebrew_binary.stat.exists == false
 
+- name: "Ensure permissions on {{ macos_homebrew.install.path }} subdirs."
+  file:
+    path: "{{ macos_homebrew.install.path }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: admin
+    recurse: true
+  become: yes
+
 - name: Check if homebrew binary is already in place.
-  stat: "path={{ macos_homebrew.install.bin }}/brew"
+  stat:
+    path: "{{ macos_homebrew.install.bin }}/brew"
   register: homebrew_binary
 
 - name: Symlink brew to macos_homebrew.install.bin.
@@ -37,3 +63,12 @@
     state: link
   when: homebrew_binary.stat.exists == false
   become: true
+
+- name: Force update after installation.
+  command: "{{ install.bin }}/brew update --force"
+  when: homebrew_binary.stat.exists == false
+
+- name: Install packages from Brewfiles
+  command: "brew bundle --file={{ item }}"
+  with_items: {{ macos_homebrew.brews }}
+  when: macos_homebrew.brews

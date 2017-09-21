@@ -10,6 +10,9 @@ macos_homebrew:
     # Path to install homebrew casks
     cask: /Applications
 
+    # URL of the Homebrew git repository
+    git: "https://github.com/Homebrew/brew.git"
+
   # Homebrew taps to attach to
   taps:
     - { name: "homebrew/dupes" }
@@ -21,3 +24,6 @@ macos_homebrew:
 
   # Casks to install or uninstall.
   casks: []
+
+  # Brewfile paths to process
+  brews: []

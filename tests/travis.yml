@@ -9,6 +9,10 @@
       ],
       casks: [
         { name: "google-chrome" }
+      ],
+      brews: [
+        "/Users/feffi/dotfiles/Brewfile-core",
+        "/Users/feffi/dotfiles/Brewfile-other"
       ]
     }
   roles:

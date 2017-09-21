@@ -48,6 +48,9 @@ macos_homebrew:
 
   # Casks to install or uninstall.
   casks: []
+
+  # Brewfile paths to process
+  brews: []
 ```
 
 ## Dependencies
@@ -64,6 +67,9 @@ None.
         - node
       casks:
         - "google-chrome"
+      brews:
+        - "/Users/feffi/dotfiles/Brewfile-core"
+        - "/Users/feffi/dotfiles/Brewfile-other"
   roles:
     - { role: feffi.macos-homebrew }
 ```
