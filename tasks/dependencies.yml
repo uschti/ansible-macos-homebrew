@@ -70,5 +70,5 @@
 
 - name: Install packages from Brewfiles
   command: "brew bundle --file={{ item }}"
-  with_items: {{ macos_homebrew.brews }}
+  with_items: "{{ macos_homebrew.brews }}"
   when: macos_homebrew.brews
