@@ -67,8 +67,3 @@
 - name: Force update after installation.
   command: "{{ macos_homebrew.install.bin }}/brew update --force"
   when: homebrew_binary.stat.exists == false
-
-- name: Install packages from Brewfiles
-  command: "{{ macos_homebrew.install.bin }}/brew bundle --file={{ item }}"
-  with_items: "{{ macos_homebrew.brews }}"
-  when: macos_homebrew.brews

@@ -7,4 +7,5 @@
 - include: taps.yml
 - include: packages.yml
 - include: casks.yml
+- include: brews.yml
 - include: post.yml
