@@ -11,8 +11,8 @@
         { name: "google-chrome" }
       ],
       brews: [
-        "tests/Brewfile-core",
-        "tests/Brewfile-other"
+        "/tmp/brews/Brewfile-core",
+        "/tmp/brews/Brewfile-other"
       ]
     }
   roles:
