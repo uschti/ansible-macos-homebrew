@@ -31,25 +31,25 @@
     accept_hostkey: yes
     depth: 1
 
-- name: "Ensure permissions on {{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }} dirs."
-  become: true
-  file:
-    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
-    owner: "{{ ansible_user_id }}"
-    group: admin
-    mode: 0775
-    state: directory
-    recurse: true
-  when: homebrew_binary.stat.exists == false
+#- name: "Ensure permissions on {{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }} dirs."
+#  become: true
+#  file:
+#    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
+#    owner: "{{ ansible_user_id }}"
+#    group: admin
+#    mode: 0775
+#    state: directory
+#    recurse: true
+#  when: homebrew_binary.stat.exists == false
 
-- name: "Ensure permissions on {{ macos_homebrew.install.path }} subdirs."
-  file:
-    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: admin
-    recurse: true
-  become: yes
+#- name: "Ensure permissions on {{ macos_homebrew.install.path }} subdirs."
+#  file:
+#    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
+#    state: directory
+#    owner: "{{ ansible_user_id }}"
+#    group: admin
+#    recurse: true
+#  become: yes
 
 - name: Check if homebrew binary is already in place.
   stat:
