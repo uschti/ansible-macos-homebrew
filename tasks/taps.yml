@@ -1,6 +1,15 @@
 ---
+- name: Determine installed taps
+  command: 'brew tap'
+  register: brew_tap
+  when: macos_homebrew.taps
+  changed_when: false
+
 - name: Setup all configured taps.
   homebrew_tap:
     tap: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ macos_homebrew.taps }}"
+  when:
+    - macos_homebrew.taps
+    - item.name not in brew_tap.stdout_lines

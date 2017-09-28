@@ -1,5 +1,5 @@
 ---
 - name: Install packages from Brewfiles
-  command: "{{ macos_homebrew.install.bin }}/brew bundle --file={{ item }}"
+  command: "brew bundle --file={{ item }}"
   with_items: "{{ macos_homebrew.brews }}"
   when: macos_homebrew.brews
