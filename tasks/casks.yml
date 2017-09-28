@@ -1,4 +1,10 @@
 ---
+- name: Determine installed casks
+  command: 'brew cask list'
+  register: brew_cask
+  when: macos_homebrew.casks
+  changed_when: false
+
 - name: Ensure configured homebrew casks are installed.
   homebrew_cask:
     name: "{{ item.name }}"
@@ -8,3 +14,6 @@
   environment:
     HOMEBREW_CASK_OPTS: "--appdir={{ macos_homebrew.install.cask }}"
   with_items: "{{ macos_homebrew.casks | default([]) }}"
+  when:
+    - macos_homebrew.casks
+    - item.name not in brew_cask.stdout_lines
