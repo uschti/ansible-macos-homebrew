@@ -3,7 +3,7 @@
   homebrew_cask:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
-    update_homebrew: yes
+    update_homebrew: no
     install_options: "{{ item.options | default([]) }}"
   environment:
     HOMEBREW_CASK_OPTS: "--appdir={{ macos_homebrew.install.cask }}"

@@ -1,8 +1,17 @@
 ---
+- name: Determine installed packages
+  command: 'brew list'
+  register: brew_list
+  when: macos_homebrew.packages
+  changed_when: false
+
 - name: Ensure configured homebrew packages are installed.
   homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state | default('latest') }}"
-    update_homebrew: yes
+    update_homebrew: no
     install_options: "{{ item.options | default([]) }}"
   with_items: "{{ macos_homebrew.packages | default([]) }}"
+  when:
+    - macos_homebrew.packages
+    - item.name not in brew_list.stdout_lines

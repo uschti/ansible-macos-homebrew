@@ -5,7 +5,9 @@
     DEBUG: true
     macos_homebrew: {
       packages: [
-        { name: "node" }
+        { name: "node" },
+        { name: "afl-fuzz" },
+        { name: "nmap" }
       ],
       casks: [
         { name: "google-chrome" }

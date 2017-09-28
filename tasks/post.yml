@@ -1,10 +1,10 @@
 ---
 - name: Cleanup homebrew packages
-  command: brew cleanup
+  command: "brew cleanup"
   ignore_errors: true
   changed_when: false
 
 - name: Cleanup cask packages
-  command: brew cask cleanup
+  command: "brew cask cleanup"
   ignore_errors: true
   changed_when: false
