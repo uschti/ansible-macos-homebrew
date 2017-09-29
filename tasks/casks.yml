@@ -21,3 +21,4 @@
   failed_when:
     - macos_homebrew_casks.msg
     - "'No Cask with this name exists' not in macos_homebrew_casks.msg"
+    - "'Cask installed' not in macos_homebrew_casks.msg"
