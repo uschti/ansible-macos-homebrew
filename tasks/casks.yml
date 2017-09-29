@@ -17,3 +17,7 @@
   when:
     - macos_homebrew.casks
     - item.name not in brew_cask.stdout_lines
+  register: macos_homebrew_casks
+  failed_when:
+    - macos_homebrew_casks.msg
+    - "'No Cask with this name exists' not in macos_homebrew_casks.msg"

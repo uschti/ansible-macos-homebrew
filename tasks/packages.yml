@@ -15,3 +15,8 @@
   when:
     - macos_homebrew.packages
     - item.name not in brew_list.stdout_lines
+  register: macos_homebrew_packages
+  failed_when:
+    - macos_homebrew_packages.msg
+    - "'No available formula with the name' not in macos_homebrew_packages.msg"
+    - "'Package is already upgraded' not in macos_homebrew_packages.msg"
