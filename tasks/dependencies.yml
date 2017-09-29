@@ -1,73 +1,13 @@
 ---
-- name: Ensure Homebrew parent directory has correct permissions (on High Sierra).
-  file:
-    path: "{{ macos_homebrew.install.prefix }}"
-    owner: root
-    state: directory
-  become: yes
-  when: "ansible_distribution_version.startswith('10.13')"
-
-- name: Ensure Homebrew parent directory has correct permissions (on non-'High Sierra' versions of Mac OS X).
-  file:
-    path: "{{ macos_homebrew.install.prefix }}"
-    owner: root
-    group: admin
-    state: directory
-    mode: 0775
-  become: yes
-  when: "not ansible_distribution_version.startswith('10.13')"
-
 - name: Check if homebrew binary is already in place.
   stat:
-    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}/bin/brew"
+    path: '{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}/bin/brew'
   register: homebrew_binary
 
-- name: "Clone Homebrew git repository from {{ macos_homebrew.install.git }}"
-  git:
-    repo: "{{ macos_homebrew.install.git }}"
-    version: master
-    dest: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
-    update: no
-    accept_hostkey: yes
-    depth: 1
-
-- name: "Ensure permissions on {{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }} dirs."
-  become: true
-  file:
-    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
-    owner: "{{ ansible_user_id }}"
-    group: admin
-    mode: 0775
-    state: directory
-    recurse: true
+- name: Install homebrew
+  shell: 'echo "\n" | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
   when: homebrew_binary.stat.exists == false
-
-- name: "Ensure permissions on {{ macos_homebrew.install.path }} subdirs."
-  file:
-    path: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}"
-    state: directory
-    owner: "{{ ansible_user_id }}"
-    group: admin
-    recurse: true
-  become: yes
-
-- name: Check if homebrew binary is already in place.
-  stat:
-    path: "{{ macos_homebrew.install.bin }}/brew"
-  register: homebrew_binary
-
-- name: Symlink brew to macos_homebrew.install.bin.
-  file:
-    src: "{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}/bin/brew"
-    dest: "{{ macos_homebrew.install.bin }}/brew"
-    state: link
-  when: homebrew_binary.stat.exists == false
-  become: true
 
 - name: Force update after installation.
-  command: "brew update --force"
+  command: 'brew update --force'
   when: homebrew_binary.stat.exists == false
-
-#- name: Installing
-#/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-

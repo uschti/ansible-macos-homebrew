@@ -20,3 +20,4 @@
     - macos_homebrew_packages.msg
     - "'No available formula with the name' not in macos_homebrew_packages.msg"
     - "'Package is already upgraded' not in macos_homebrew_packages.msg"
+    - "'Package upgraded' not in macos_homebrew_packages.msg"
