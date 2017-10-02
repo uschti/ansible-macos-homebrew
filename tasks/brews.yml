@@ -3,3 +3,4 @@
   command: "brew bundle --file={{ item }}"
   with_items: "{{ macos_homebrew.brews }}"
   when: macos_homebrew.brews
+  changed_when: false
