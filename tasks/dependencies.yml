@@ -1,4 +1,12 @@
 ---
+- name: Ensure correct permissions
+  become: true
+  file:
+    path: "/usr/local/bin"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    recurse: true
+
 - name: Check if homebrew binary is already in place.
   stat:
     path: '{{ macos_homebrew.install.prefix }}/{{ macos_homebrew.install.path }}/bin/brew'
