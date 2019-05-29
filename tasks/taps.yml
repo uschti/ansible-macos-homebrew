@@ -1,4 +1,9 @@
 ---
+- name: Accept xcode License if it is installed
+  shell: xcodebuild -license accept
+  become: true
+  ignore_errors: yes
+  
 - name: Determine installed taps
   command: 'brew tap'
   register: brew_tap
